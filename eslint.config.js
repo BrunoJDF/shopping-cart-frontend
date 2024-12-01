@@ -3,6 +3,7 @@ import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintConfigPrettier from "eslint-config-prettier";
 import eslintPluginTypeScript from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser"; // Importación del parser de TypeScript
+import vueParser from "vue-eslint-parser"; // Importación del parser de Vue
 
 export default [
   {
@@ -14,8 +15,9 @@ export default [
       "@typescript-eslint": eslintPluginTypeScript,
     },
     languageOptions: {
-      parser: tsParser, // Parser configurado correctamente
+      parser: vueParser, // Parser configurado correctamente
       parserOptions: {
+        parser: tsParser, // Parser de TypeScript
         ecmaVersion: 2021,
         sourceType: "module",
         extraFileExtensions: [".vue"], // Soporte para archivos .vue

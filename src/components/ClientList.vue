@@ -33,7 +33,7 @@ import { defineComponent, onMounted, ref } from "vue";
 export default defineComponent({
   name: "ClientList",
   emits: ["selectClient"],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     let clients = ref<Client[]>([]);
     const error = ref<string | null>(null);
     onMounted(async () => {

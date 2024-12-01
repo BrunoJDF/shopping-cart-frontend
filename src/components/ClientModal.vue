@@ -1,18 +1,10 @@
 <template>
   <div class="client-modal">
     <div class="content">
-      <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" v-model="client.name" />
-      </div>
-      <div class="form-group">
-        <label for="lastName">Apellido</label>
-        <input type="text" id="lastName" v-model="client.lastName" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="client.email" />
-      </div>
+      <FormInputText v-model="client.name" label="Nombre" />
+      <FormInputText v-model="client.lastName" label="Apellido" />
+      <FormInputText v-model="client.email" label="Email" />
+      <FormInputText v-model="client.phone" label="Teléfono" />
       <div class="group-button">
         <div class="form-group">
           <button @click="saveClient(client)">Guardar</button>
@@ -27,9 +19,14 @@
 <script lang="ts">
 import type { Client } from "@/model/client";
 import { defineComponent, type PropType } from "vue";
+import FormInputText from "@/components/common/FormInputText.vue";
+import { patchClient } from "@/services/client.service";
 
 export default defineComponent({
   name: "ClientModal",
+  components: {
+    FormInputText,
+  },
   props: {
     client: {
       type: Object as PropType<Client>,
@@ -37,9 +34,15 @@ export default defineComponent({
     },
   },
   emits: ["close"],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     const saveClient = (client: Client) => {
-      console.log("Saving client", client);
+      patchClient(client)
+        .then(() => {
+          emit("close");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     };
     const close = () => {
       emit("close");
@@ -69,12 +72,6 @@ export default defineComponent({
 .form-group {
   display: flex;
   flex-direction: column;
-}
-.form-group label {
-  margin-bottom: 0.5rem;
-}
-.form-group input {
-  padding: 0.5rem;
 }
 .form-group button {
   padding: 0.5rem;

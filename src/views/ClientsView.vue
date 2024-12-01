@@ -2,7 +2,7 @@
   <div class="clients">
     <h1>Clientes</h1>
     <ClientList @select-client="handleSelectedClient" />
-    <ClientModal v-if="selectedClient" :client="selectedClient" />
+    <ClientModal v-if="selectedClient && showModal" :client="selectedClient" @close="handleClose" />
   </div>
 </template>
 
@@ -19,13 +19,18 @@ export default defineComponent({
   },
   name: "ClientsView",
   setup() {
+    const showModal = ref(false);
     const selectedClient = ref<Client | null>(null);
     const handleSelectedClient = (client: Client) => {
-      console.log("Selected client on ClientsView", client);
       selectedClient.value = client;
+      showModal.value = true;
+    };
+    const handleClose = () => {
+      selectedClient.value = null;
+      showModal.value = false;
     };
 
-    return { handleSelectedClient, selectedClient };
+    return { handleSelectedClient, selectedClient, handleClose, showModal };
   },
 });
 </script>

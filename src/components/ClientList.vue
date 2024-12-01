@@ -1,14 +1,23 @@
 <template>
   <div>
     <h1>Lista de clientes</h1>
-    <div v-for="client in clients" :key="client.id">
-      <div class="item">
-        <i>{{ client.id }}</i>
-        <div class="details">
-          <h3>{{ client.name }}</h3>
-          <p>{{ client.email }}</p>
-        </div>
-      </div>
+    <div class="clients-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="client in clients" :key="client.id">
+            <td>{{ client.name }}</td>
+            <td>{{ client.lastName }}</td>
+            <td>{{ client.email }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div v-if="error">{{ error }}</div>
   </div>
@@ -36,3 +45,20 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clients-table th,
+.clients-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.clients-table th {
+  background-color: #181818;
+  text-align: left;
+}
+</style>

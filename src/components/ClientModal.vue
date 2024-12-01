@@ -1,10 +1,10 @@
 <template>
   <div class="client-modal">
     <div class="content">
-      <FormInputText v-model="client.name" label="Nombre" />
-      <FormInputText v-model="client.lastName" label="Apellido" />
-      <FormInputText v-model="client.email" label="Email" />
-      <FormInputText v-model="client.phone" label="Teléfono" />
+      <FormInputText v-model="clientLocal.name" label="Nombre" />
+      <FormInputText v-model="clientLocal.lastName" label="Apellido" />
+      <FormInputText v-model="clientLocal.email" label="Email" />
+      <FormInputText v-model="clientLocal.phone" label="Teléfono" />
       <div class="group-button">
         <div class="form-group">
           <button @click="saveClient(client)">Guardar</button>
@@ -35,7 +35,9 @@ export default defineComponent({
   },
   emits: ["close"],
   setup(props, { emit }) {
+    const clientLocal = { ...props.client };
     const saveClient = (client: Client) => {
+      client = clientLocal;
       patchClient(client)
         .then(() => {
           emit("close");
@@ -47,7 +49,7 @@ export default defineComponent({
     const close = () => {
       emit("close");
     };
-    return { saveClient, close };
+    return { saveClient, close, clientLocal };
   },
 });
 </script>

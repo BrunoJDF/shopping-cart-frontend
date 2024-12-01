@@ -11,45 +11,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="client in clients" :key="client.id">
+          <tr v-for="client in clientList" :key="client.id">
             <td>{{ client.name }}</td>
             <td>{{ client.lastName }}</td>
             <td>{{ client.email }}</td>
             <td>
-              <button @click="selectClient(client)">Editar</button>
+              <button @click="editClient(client)">Editar</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div v-if="error">{{ error }}</div>
   </div>
 </template>
 <script lang="ts">
 import type { Client } from "@/model/client";
-import { getClients } from "@/services/client.service";
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, ref, type PropType } from "vue";
 
 export default defineComponent({
   name: "ClientList",
   emits: ["selectClient"],
+  props: {
+    clientList: {
+      type: Array as PropType<Client[]>,
+      required: true,
+    },
+  },
   setup(props, { emit }) {
-    let clients = ref<Client[]>([]);
-    const error = ref<string | null>(null);
-    onMounted(async () => {
-      try {
-        clients.value = await getClients();
-      } catch (err) {
-        error.value = "Error loading clients";
-        console.error(error);
-      }
-    });
-
     const editClient = (client: Client) => {
       emit("selectClient", client);
     };
 
-    return { clients, error, selectClient: editClient };
+    return { editClient };
   },
 });
 </script>

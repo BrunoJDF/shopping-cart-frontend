@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Lista de clientes</h1>
+    <h3>Lista de clientes</h3>
     <div class="clients-table">
       <table>
         <thead>
@@ -15,6 +15,9 @@
             <td>{{ client.name }}</td>
             <td>{{ client.lastName }}</td>
             <td>{{ client.email }}</td>
+            <td>
+              <button @click="selectClient(client)">Editar</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -29,7 +32,8 @@ import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "ClientList",
-  setup() {
+  emits: ["selectClient"],
+  setup(_, { emit }) {
     let clients = ref<Client[]>([]);
     const error = ref<string | null>(null);
     onMounted(async () => {
@@ -41,7 +45,11 @@ export default defineComponent({
       }
     });
 
-    return { clients, error };
+    const editClient = (client: Client) => {
+      emit("selectClient", client);
+    };
+
+    return { clients, error, selectClient: editClient };
   },
 });
 </script>

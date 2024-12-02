@@ -7,7 +7,7 @@
       <FormInputText v-model="clientLocal.phone" label="Teléfono" />
       <div class="group-button">
         <div class="form-group">
-          <button @click="saveClient(client)">Guardar</button>
+          <button @click="saveClient">Guardar</button>
         </div>
         <div class="form-group">
           <button @click="close">Cerrar</button>
@@ -17,10 +17,10 @@
   </div>
 </template>
 <script lang="ts">
-import type { Client } from "@/model/client";
-import { defineComponent, type PropType } from "vue";
+import { initialClient, type Client } from "@/model/client";
+import { defineComponent, onMounted, ref, type PropType, type Ref } from "vue";
 import FormInputText from "@/components/common/FormInputText.vue";
-import { patchClient } from "@/services/client.service";
+import { patchClient, postClient } from "@/services/client.service";
 
 export default defineComponent({
   name: "ClientModal",
@@ -29,29 +29,39 @@ export default defineComponent({
   },
   props: {
     client: {
-      type: Object as PropType<Client>,
+      type: Object as PropType<Client | null>,
       required: true,
     },
   },
   emits: ["close"],
   setup(props, { emit }) {
-    const clientLocal = { ...props.client };
-    const saveClient = (client: Client) => {
-      client = clientLocal;
-      patchClient(client)
-        .then(() => {
-          emit("close");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    };
-    const close = () => {
-      emit("close");
-    };
+    const clientLocal = ref<Client>(initialClient);
+    onMounted(() => {
+      if (props.client) {
+        clientLocal.value = props.client;
+        console.log("is not new client");
+      }
+    });
+    const { saveClient, close } = useClientModal(clientLocal, emit);
     return { saveClient, close, clientLocal };
   },
 });
+function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void) {
+  const close = () => {
+    emit("close");
+  };
+
+  const saveClient = async () => {
+    if (clientLocal.value.id) {
+      await patchClient(clientLocal.value);
+      close();
+    } else {
+      await postClient(clientLocal.value);
+      close();
+    }
+  };
+  return { saveClient, close };
+}
 </script>
 <style scoped>
 .client-modal {

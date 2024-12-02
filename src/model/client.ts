@@ -10,3 +10,15 @@ interface Client {
   status: string;
 }
 export { type Client };
+
+export const initialClient: Client = {
+  id: 0,
+  name: "",
+  lastName: "",
+  fullName: "",
+  ruc: "",
+  email: "",
+  phone: "",
+  address: "",
+  status: "",
+};

@@ -10,13 +10,13 @@
 </template>
 
 <script lang="ts">
-import ClientList from "@/components/ClientList.vue";
-import ClientModal from "@/components/ClientModal.vue";
+import ClientList from "@/components/client/ClientList.vue";
+import ClientModal from "@/components/client/ClientModal.vue";
 import { initialClient, type Client } from "@/model/client";
 import { getClients } from "@/services/client.service";
 import { defineComponent, onMounted, ref } from "vue";
 
-export default defineComponent({
+const ClientsView = defineComponent({
   components: {
     ClientList,
     ClientModal,
@@ -57,5 +57,7 @@ export default defineComponent({
     };
   },
 });
+
+export default ClientsView;
 </script>
 <style></style>

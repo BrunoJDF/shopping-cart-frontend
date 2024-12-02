@@ -22,7 +22,7 @@ import { defineComponent, onMounted, ref, type PropType, type Ref } from "vue";
 import FormInputText from "@/components/common/FormInputText.vue";
 import { patchClient, postClient } from "@/services/client.service";
 
-const ClientModal = defineComponent({
+export default defineComponent({
   name: "ClientModal",
   components: {
     FormInputText,
@@ -62,8 +62,6 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
   };
   return { saveClient, close };
 }
-
-export default ClientModal;
 </script>
 <style scoped>
 .client-modal {

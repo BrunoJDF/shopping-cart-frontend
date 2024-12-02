@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Productos</h1>
-    <ProductList :product-list="products" />
+    <ProductList :product-list="products" @select-product="handleProductSelected" />
   </div>
 </template>
 <script lang="ts">
@@ -10,7 +10,7 @@ import type { Product } from "@/model/product";
 import { getProducts } from "@/services/product.servce";
 import { defineComponent, onMounted, ref } from "vue";
 
-const ProductsView = defineComponent({
+export default defineComponent({
   name: "ProductsView",
   components: {
     ProductList,
@@ -24,9 +24,11 @@ const ProductsView = defineComponent({
     onMounted(() => {
       fetchProducts();
     });
-    return { products };
+
+    const handleProductSelected = (product: Product) => {
+      console.log("Product selected", product);
+    };
+    return { handleProductSelected, products };
   },
 });
-
-export default ProductsView;
 </script>

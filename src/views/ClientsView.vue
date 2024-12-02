@@ -16,7 +16,7 @@ import { initialClient, type Client } from "@/model/client";
 import { getClients } from "@/services/client.service";
 import { defineComponent, onMounted, ref } from "vue";
 
-const ClientsView = defineComponent({
+export default defineComponent({
   components: {
     ClientList,
     ClientModal,
@@ -57,7 +57,5 @@ const ClientsView = defineComponent({
     };
   },
 });
-
-export default ClientsView;
 </script>
 <style></style>

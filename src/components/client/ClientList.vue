@@ -28,7 +28,7 @@
 import type { Client } from "@/model/client";
 import { defineComponent, ref, type PropType } from "vue";
 
-const ClientList = defineComponent({
+export default defineComponent({
   name: "ClientList",
   emits: ["selectClient"],
   props: {
@@ -45,8 +45,6 @@ const ClientList = defineComponent({
     return { editClient };
   },
 });
-
-export default ClientList;
 </script>
 <style scoped>
 .clients-table {

@@ -2,6 +2,9 @@
   <div>
     <h1>Productos</h1>
     <ProductList :product-list="products" @select-product="handleProductSelected" />
+    <div>
+      <button @click="handleAddProduct">Agregar producto</button>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -21,6 +24,7 @@ export default defineComponent({
     const fetchProducts = async () => {
       products.value = await getProducts();
     };
+
     onMounted(() => {
       fetchProducts();
     });
@@ -28,7 +32,10 @@ export default defineComponent({
     const handleProductSelected = (product: Product) => {
       console.log("Product selected", product);
     };
-    return { handleProductSelected, products };
+    const handleAddProduct = () => {
+      console.log("Add product");
+    };
+    return { handleProductSelected, handleAddProduct, products };
   },
 });
 </script>

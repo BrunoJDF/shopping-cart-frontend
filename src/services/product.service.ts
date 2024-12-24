@@ -1,5 +1,5 @@
 import type { Product } from "@/model/product";
-import { fetchData, postData } from "@/utils/api";
+import { fetchData, patchData, postData } from "@/utils/api";
 
 const url = "/api/products";
 
@@ -12,7 +12,7 @@ const postProduct = async (createProduct: Product): Promise<Product> => {
 };
 
 const patchProduct = async (updateProduct: Product): Promise<Product> => {
-  return await postData<any, Product>(url + "/" + updateProduct.id, updateProduct);
+  return await patchData<any, Product>(url + "/" + updateProduct.id, updateProduct);
 };
 
 export { getProducts, postProduct, patchProduct };

@@ -14,4 +14,10 @@ const patchClient = async (updateClient: any): Promise<Client> => {
   return await patchData<any, Client>(url + "/" + updateClient.id, updateClient);
 };
 
-export { getClients, postClient, patchClient };
+const deleteClient = async (id: number): Promise<void> => {
+  await fetch(url + "/" + id, {
+    method: "DELETE",
+  });
+};
+
+export { getClients, postClient, patchClient, deleteClient };

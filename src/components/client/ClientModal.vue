@@ -30,17 +30,15 @@ export default defineComponent({
   props: {
     client: {
       type: Object as PropType<Client | null>,
-      required: true,
+      required: false,
     },
   },
   emits: ["close"],
   setup(props, { emit }) {
     const clientLocal = ref<Client>(initialClient);
     onMounted(() => {
-      const client = props.client;
-      if (client && client.id) {
-        clientLocal.value = { ...client };
-        console.log("is not new client");
+      if (props.client) {
+        clientLocal.value = { ...props.client };
       }
     });
     const { saveClient, close } = useClientModal(clientLocal, emit);
@@ -54,11 +52,12 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
   };
 
   const saveClient = async () => {
-    if (clientLocal.value.id) {
-      await patchClient(clientLocal.value);
+    let client = clientLocal.value;
+    if (client?.id) {
+      await patchClient(client);
       close();
     } else {
-      await postClient(clientLocal.value);
+      await postClient(client);
       close();
     }
   };

@@ -17,6 +17,7 @@
             <td>{{ client.email }}</td>
             <td>
               <button @click="editClient(client)">Editar</button>
+              <button @click="deleteClient(client)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -30,7 +31,7 @@ import { defineComponent, type PropType } from "vue";
 
 export default defineComponent({
   name: "ClientList",
-  emits: ["selectClient"],
+  emits: ["selectClient", "deleteClient"],
   props: {
     clientList: {
       type: Array as PropType<Client[]>,
@@ -42,7 +43,11 @@ export default defineComponent({
       emit("selectClient", client);
     };
 
-    return { editClient };
+    const deleteClient = (client: Client) => {
+      emit("deleteClient", client);
+    };
+
+    return { editClient, deleteClient };
   },
 });
 </script>

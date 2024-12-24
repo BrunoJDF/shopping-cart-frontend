@@ -26,7 +26,7 @@
 </template>
 <script lang="ts">
 import type { Client } from "@/model/client";
-import { defineComponent, ref, type PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 
 export default defineComponent({
   name: "ClientList",

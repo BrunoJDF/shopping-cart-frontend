@@ -37,8 +37,9 @@ export default defineComponent({
   setup(props, { emit }) {
     const clientLocal = ref<Client>(initialClient);
     onMounted(() => {
-      if (props.client) {
-        clientLocal.value = props.client;
+      const client = props.client;
+      if (client && client.id) {
+        clientLocal.value = { ...client };
         console.log("is not new client");
       }
     });
@@ -46,6 +47,7 @@ export default defineComponent({
     return { saveClient, close, clientLocal };
   },
 });
+
 function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void) {
   const close = () => {
     emit("close");
@@ -75,16 +77,19 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .content {
     background-color: rgb(24, 20, 20);
     padding: 1rem;
     border-radius: 0.5rem;
   }
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
 }
+
 .form-group button {
   padding: 0.5rem;
   background-color: #007bff;
@@ -92,6 +97,7 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
   border: none;
   cursor: pointer;
 }
+
 .group-button {
   margin-top: 1rem;
   display: flex;

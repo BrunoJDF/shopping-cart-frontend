@@ -1,10 +1,10 @@
 <template>
   <div class="client-modal">
     <div class="content">
-      <FormInputText v-model="clientLocal.name" label="Nombre" />
-      <FormInputText v-model="clientLocal.lastName" label="Apellido" />
-      <FormInputText v-model="clientLocal.email" label="Email" />
-      <FormInputText v-model="clientLocal.phone" label="Teléfono" />
+      <form-input-text v-model="clientLocal.name" label="Nombre" />
+      <form-input-text v-model="clientLocal.lastName" label="Apellido" />
+      <form-input-text v-model="clientLocal.email" label="Email" />
+      <form-input-text v-model="clientLocal.phone" label="Teléfono" />
       <div class="group-button">
         <div class="form-group">
           <button @click="saveClient">Guardar</button>

@@ -1,7 +1,10 @@
 <template>
   <div class="product-modal">
     <div class="content">
-      <FormInputText v-model="productLocal.name" label="Nombre" />
+      <form-input-text v-model="productLocal.name" label="Nombre" />
+      <div class="form-group">
+        <input type="number" v-model="productLocal.price" placeholder="Precio" />
+      </div>
       <div class="group-button">
         <div class="form-group">
           <button @click="saveProduct">Guardar</button>
@@ -14,9 +17,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, type PropType, type Ref, ref } from "vue";
+import { defineComponent, onMounted, type PropType, type Ref, ref } from "vue";
 import FormInputText from "@/components/common/FormInputText.vue";
 import { initialProduct, type Product } from "@/model/product.ts";
+import { patchProduct, postProduct } from "@/services/product.service.ts";
 
 export default defineComponent({
   name: "ProductModal",
@@ -32,6 +36,13 @@ export default defineComponent({
   emits: ["close"],
   setup(props, { emit }) {
     const productLocal = ref<Product>(initialProduct);
+    onMounted(() => {
+      const product = props.product;
+      if (product && product.id) {
+        productLocal.value = { ...product };
+        console.log("is not new product");
+      }
+    });
     const { saveProduct, close } = useProductModal(productLocal, emit);
     return { productLocal, saveProduct, close };
   },
@@ -44,9 +55,11 @@ function useProductModal(productLocal: Ref<Product>, emit: (event: "close") => v
   const saveProduct = async () => {
     if (productLocal.value.id) {
       console.log("Update product", productLocal.value);
+      await patchProduct(productLocal.value);
       close();
     } else {
       console.log("Create product", productLocal.value);
+      await postProduct(productLocal.value);
       close();
     }
   };

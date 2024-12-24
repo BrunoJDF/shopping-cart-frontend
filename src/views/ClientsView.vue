@@ -1,8 +1,8 @@
 <template>
   <div class="clients">
     <h1>Clientes</h1>
-    <ClientList @select-client="handleSelectedClient" :client-list="clients" />
-    <ClientModal v-if="showModal" :client="selectedClient" @close="handleClose" />
+    <client-list @select-client="handleSelectedClient" :client-list="clients" />
+    <client-modal v-if="showModal" :client="selectedClient" @close="handleClose" />
     <div>
       <button @click="handleAddClient">Agregar cliente</button>
     </div>
@@ -58,4 +58,3 @@ export default defineComponent({
   },
 });
 </script>
-<style></style>

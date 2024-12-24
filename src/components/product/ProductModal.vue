@@ -30,17 +30,15 @@ export default defineComponent({
   props: {
     product: {
       type: Object as PropType<Product | null>,
-      required: true,
+      required: false,
     },
   },
   emits: ["close"],
   setup(props, { emit }) {
     const productLocal = ref<Product>(initialProduct);
     onMounted(() => {
-      const product = props.product;
-      if (product && product.id) {
-        productLocal.value = { ...product };
-        console.log("is not new product");
+      if (props.product) {
+        productLocal.value = { ...props.product };
       }
     });
     const { saveProduct, close } = useProductModal(productLocal, emit);
@@ -53,13 +51,14 @@ function useProductModal(productLocal: Ref<Product>, emit: (event: "close") => v
   };
 
   const saveProduct = async () => {
-    if (productLocal.value.id) {
-      console.log("Update product", productLocal.value);
-      await patchProduct(productLocal.value);
+    let product = productLocal.value;
+    if (product.id) {
+      await patchProduct(product);
+      console.log("Update product");
       close();
     } else {
-      console.log("Create product", productLocal.value);
-      await postProduct(productLocal.value);
+      await postProduct(product);
+      console.log("Create product");
       close();
     }
   };

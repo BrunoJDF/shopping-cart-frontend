@@ -34,7 +34,7 @@ export default defineComponent({
 
     const handleClose = async () => {
       await fetchProducts();
-      selectedProduct.value = null;
+      selectedProduct.value = initialProduct;
       showModal.value = false;
     };
     const handleProductSelected = (product: Product) => {
@@ -42,7 +42,6 @@ export default defineComponent({
       showModal.value = true;
     };
     const handleAddProduct = () => {
-      selectedProduct.value = initialProduct;
       showModal.value = true;
     };
 

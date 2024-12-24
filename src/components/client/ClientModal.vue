@@ -55,9 +55,11 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
     let client = clientLocal.value;
     if (client?.id) {
       await patchClient(client);
+      console.log("Update client");
       close();
     } else {
       await postClient(client);
+      console.log("Create client");
       close();
     }
   };

@@ -7,8 +7,8 @@
       @delete-product="handleDeleteProduct"
     />
     <product-modal v-if="showModal" :product="selectedProduct" @close="handleClose" />
-    <div>
-      <button @click="handleAddProduct">Agregar producto</button>
+    <div class="mt-2">
+      <button class="btn btn-primary" @click="handleAddProduct">Agregar producto</button>
     </div>
   </div>
 </template>

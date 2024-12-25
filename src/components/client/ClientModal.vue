@@ -80,7 +80,7 @@ function useClientModal(clientLocal: Ref<Client>, emit: (event: "close") => void
   align-items: center;
 
   .content {
-    background-color: rgb(24, 20, 20);
+    background-color: rgb(255, 255, 255, 0.9);
     padding: 1rem;
     border-radius: 0.5rem;
   }

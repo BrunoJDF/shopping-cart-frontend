@@ -2,7 +2,8 @@
   <div class="product-modal">
     <div class="content">
       <form-input-text v-model="productLocal.name" label="Nombre" />
-      <div class="form-group">
+      <div class="form-group pt-1">
+        <label for="price">Precio</label>
         <input type="number" v-model="productLocal.price" placeholder="Precio" />
       </div>
       <div class="group-button">
@@ -79,7 +80,7 @@ function useProductModal(productLocal: Ref<Product>, emit: (event: "close") => v
   align-items: center;
 
   .content {
-    background-color: rgb(24, 20, 20);
+    background-color: rgb(255, 255, 255, 0.9);
     padding: 1rem;
     border-radius: 0.5rem;
   }

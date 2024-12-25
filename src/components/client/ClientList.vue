@@ -64,7 +64,7 @@ export default defineComponent({
 }
 
 .clients-table th {
-  background-color: #181818;
+  background-color: #f2f2f2;
   text-align: left;
 }
 </style>

@@ -15,4 +15,10 @@ const patchProduct = async (updateProduct: Product): Promise<Product> => {
   return await patchData<any, Product>(url + "/" + updateProduct.id, updateProduct);
 };
 
-export { getProducts, postProduct, patchProduct };
+const deleteProduct = async (id: number): Promise<void> => {
+  await fetch(url + "/" + id, {
+    method: "DELETE",
+  });
+};
+
+export { getProducts, postProduct, patchProduct, deleteProduct };

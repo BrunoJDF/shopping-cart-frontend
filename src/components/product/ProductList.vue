@@ -16,6 +16,7 @@
             <td>{{ product.price }}</td>
             <td>
               <button @click="editProduct(product)">Editar</button>
+              <button @click="deleteProduct(product)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -29,7 +30,7 @@ import { defineComponent } from "vue";
 
 const ProductList = defineComponent({
   name: "ProductList",
-  emits: ["selectProduct"],
+  emits: ["selectProduct", "deleteProduct"],
   props: {
     productList: {
       type: Array as () => Array<Product>,
@@ -40,7 +41,11 @@ const ProductList = defineComponent({
     const editProduct = (product: Product) => {
       emit("selectProduct", product);
     };
-    return { editProduct };
+
+    const deleteProduct = (product: Product) => {
+      emit("deleteProduct", product);
+    };
+    return { editProduct, deleteProduct };
   },
 });
 export default ProductList;

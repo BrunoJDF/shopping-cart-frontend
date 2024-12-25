@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>Productos</h1>
-    <product-list :product-list="products" @select-product="handleProductSelected" @delete-product="handleDeleteProduct" />
+    <product-list
+      :product-list="products"
+      @select-product="handleProductSelected"
+      @delete-product="handleDeleteProduct"
+    />
     <product-modal v-if="showModal" :product="selectedProduct" @close="handleClose" />
     <div>
       <button @click="handleAddProduct">Agregar producto</button>

@@ -21,11 +21,11 @@ import { deleteClient, getClients } from "@/services/client.service";
 import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
+  name: "ClientsView",
   components: {
     ClientList,
     ClientModal,
   },
-  name: "ClientsView",
   setup() {
     const clients = ref<Client[]>([]);
     const showModal = ref(false);

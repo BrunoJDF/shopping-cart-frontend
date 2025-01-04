@@ -46,6 +46,7 @@ export default defineComponent({
     return { productLocal, saveProduct, close };
   },
 });
+
 function useProductModal(productLocal: Ref<Product>, emit: (event: "close") => void) {
   const close = () => {
     emit("close");
@@ -53,7 +54,7 @@ function useProductModal(productLocal: Ref<Product>, emit: (event: "close") => v
 
   const saveProduct = async () => {
     let product = productLocal.value;
-    if (product.id) {
+    if (product?.id) {
       await patchProduct(product);
       console.log("Update product");
       close();

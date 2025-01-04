@@ -12,6 +12,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import ProductList from "@/components/product/ProductList.vue";
 import { initialProduct, type Product } from "@/model/product";
@@ -36,14 +37,14 @@ export default defineComponent({
 
     onMounted(fetchProducts);
 
+    const handleProductSelected = (product: Product) => {
+      selectedProduct.value = product;
+      showModal.value = true;
+    };
     const handleClose = async () => {
       await fetchProducts();
       selectedProduct.value = initialProduct;
       showModal.value = false;
-    };
-    const handleProductSelected = (product: Product) => {
-      selectedProduct.value = product;
-      showModal.value = true;
     };
     const handleAddProduct = () => {
       showModal.value = true;
@@ -58,8 +59,8 @@ export default defineComponent({
       handleAddProduct,
       handleClose,
       handleDeleteProduct,
-      products,
       showModal,
+      products,
       selectedProduct,
     };
   },

@@ -7,8 +7,8 @@
       :client-list="clients"
     />
     <client-modal v-if="showModal" :client="selectedClient" @close="handleClose" />
-    <div>
-      <button @click="handleAddClient">Agregar cliente</button>
+    <div class="mt-2">
+      <button class="btn btn-primary" @click="handleAddClient">Agregar cliente</button>
     </div>
   </div>
 </template>

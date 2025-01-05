@@ -16,8 +16,8 @@
             <td>{{ client.lastName }}</td>
             <td>{{ client.email }}</td>
             <td>
-              <button @click="editClient(client)">Editar</button>
-              <button @click="deleteClient(client)">Eliminar</button>
+              <button class="btn btn-secondary me-1" @click="editClient(client)">Editar</button>
+              <button class="btn btn-danger" @click="deleteClient(client)">Eliminar</button>
             </td>
           </tr>
         </tbody>

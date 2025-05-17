@@ -1,11 +1,5 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-</script>
-
 <template>
   <header>
-    <img alt="Vue logo" src="@/assets/logo.svg" width="50" height="50" />
-
     <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -18,15 +12,24 @@ import { RouterLink, RouterView } from "vue-router";
 
   <RouterView class="content" />
 </template>
+<script lang="ts">
+import { RouterLink, RouterView } from "vue-router";
 
+export default {
+  name: "App"
+};
+</script>
 <style scoped>
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1rem;
   background-color: #333;
   color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 nav {
   display: flex;
@@ -44,9 +47,12 @@ nav a:hover {
 }
 
 nav a.router-link-active {
-  background-color: #007bff;
+  background-color: transparent; /* Sin fondo */
+  color: #9bb9e0; /* Cambia el color del texto, elige el que prefieras */
+  font-weight: bold;
 }
 .content {
   padding: 1rem;
+  margin-top: 70px;
 }
 </style>

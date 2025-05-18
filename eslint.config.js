@@ -32,6 +32,7 @@ export default [
           semi: true, // Punto y coma obligatorio
           tabWidth: 2, // Define la indentación en 2 espacios
           useTabs: false,
+          endOfLine: "auto", // Manejo automático de saltos de línea
         },
       ],
       indent: ["error", 2], // Asegúrate de que la indentación se aplique con 2 espacios

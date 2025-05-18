@@ -1,13 +1,11 @@
 <template>
   <header>
-    <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/clients">Clients</RouterLink>
         <RouterLink to="/products">Products</RouterLink>
       </nav>
-    </div>
   </header>
 
   <RouterView class="content" />
@@ -24,7 +22,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
   background-color: rgba(51, 51, 51, 0.7);
   color: white;
   position: fixed;
@@ -35,17 +32,17 @@ header {
 }
 nav {
   display: flex;
-  gap: 1rem;
 }
 nav a {
   color: white;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 1rem;
   transition: background-color 0.3s;
 }
 nav a:hover {
   background-color: #555;
+  color: #9bb9e0;
+  font-weight: bold;
 }
 
 nav a.router-link-active {

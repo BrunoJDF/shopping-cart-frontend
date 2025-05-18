@@ -2,7 +2,9 @@
   <header>
     <div class="container-header">
       <div class="content-header">
-        <h1>M</h1>
+        <div class="content-logo">
+          <img src="@/assets/logo.svg" alt="Logo" width="45" height="45" />
+        </div>
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
@@ -23,9 +25,17 @@ export default {
 };
 </script>
 <style scoped>
-.content-header {
+.content-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.container-header {
+  width: 60%;
+}
+
+.content-header {
+  display: flex;
   justify-content: space-between;
   width: 100%;
 }
@@ -50,6 +60,8 @@ nav {
 nav a {
   color: white;
   text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
   padding: 1rem;
   transition: background-color 0.3s;
 }

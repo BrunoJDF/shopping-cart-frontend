@@ -19,7 +19,7 @@
 import { RouterLink, RouterView } from "vue-router";
 
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 <style scoped>

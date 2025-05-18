@@ -25,11 +25,13 @@ header {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.7);
   color: white;
   position: fixed;
   width: 100%;
   z-index: 1000;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 nav {
   display: flex;

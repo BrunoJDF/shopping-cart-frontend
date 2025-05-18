@@ -10,4 +10,9 @@
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.about {
+  background-image: url("@/assets/jpg/background-image-1.jpg");
+  height: 100%;
+}
+</style>

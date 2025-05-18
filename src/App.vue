@@ -5,12 +5,17 @@
         <div class="content-logo">
           <img src="@/assets/logo.svg" alt="Logo" width="45" height="45" />
         </div>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/clients">Clients</RouterLink>
-          <RouterLink to="/products">Products</RouterLink>
-        </nav>
+        <div class="container-nav">
+          <nav>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/clients">Clients</RouterLink>
+            <RouterLink to="/products">Products</RouterLink>
+          </nav>
+          <div class="container-actions">
+            <button class="btn btn-donate-us">Donate us</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -25,11 +30,37 @@ export default {
 };
 </script>
 <style scoped>
+.btn-donate-us {
+  background-color: #9bb9e0;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-donate-us:hover {
+  background-color: #7a9bb0;
+}
+
+.container-nav {
+  display: flex;
+}
+
+.container-actions {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .content-logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .container-header {
   width: 60%;
 }
@@ -55,6 +86,7 @@ header {
 
 nav {
   display: flex;
+  margin-right: 2rem;
 }
 
 nav a {

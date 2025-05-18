@@ -1,11 +1,16 @@
 <template>
   <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/clients">Clients</RouterLink>
-        <RouterLink to="/products">Products</RouterLink>
-      </nav>
+    <div class="container-header">
+      <div class="content-header">
+        <h1>M</h1>
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/clients">Clients</RouterLink>
+          <RouterLink to="/products">Products</RouterLink>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <RouterView class="content" />
@@ -18,6 +23,13 @@ export default {
 };
 </script>
 <style scoped>
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -28,17 +40,20 @@ header {
   width: 100%;
   z-index: 1000;
   backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 nav {
   display: flex;
 }
+
 nav a {
   color: white;
   text-decoration: none;
   padding: 1rem;
   transition: background-color 0.3s;
 }
+
 nav a:hover {
   background-color: #555;
   color: #9bb9e0;
@@ -46,10 +61,13 @@ nav a:hover {
 }
 
 nav a.router-link-active {
-  background-color: transparent; /* Sin fondo */
-  color: #9bb9e0; /* Cambia el color del texto, elige el que prefieras */
+  background-color: transparent;
+  /* Sin fondo */
+  color: #9bb9e0;
+  /* Cambia el color del texto, elige el que prefieras */
   font-weight: bold;
 }
+
 .content {
   padding: 1rem;
   margin-top: 70px;

@@ -34,8 +34,8 @@ onMounted(() => {
 
 <style scoped>
 .simple-navbar {
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--background);
+  border-bottom: 1px solid var(--background-secondary);
   padding: 0 1rem;
 }
 
@@ -51,7 +51,7 @@ onMounted(() => {
 .nav-brand {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: var(--principal-light);
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ onMounted(() => {
 .nav-link {
   padding: 0.5rem 1rem;
   text-decoration: none;
-  color: #6b7280;
+  color: var(--text-primary);
   font-weight: 500;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -71,13 +71,13 @@ onMounted(() => {
 }
 
 .nav-link:hover {
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--principal-light);
+  color: var(--principal-dark);
 }
 
 .nav-link-active {
   background: #eff6ff;
-  color: #2563eb;
+  color: var(--principal-light);
   font-weight: 600;
 }
 </style>

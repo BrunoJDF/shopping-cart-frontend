@@ -9,6 +9,9 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
+// importar estilos globales
+import "@/style.css";
+
 const app = createApp(App);
 
 app.use(createPinia());

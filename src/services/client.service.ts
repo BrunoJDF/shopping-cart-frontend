@@ -3,7 +3,7 @@ import { fetchData, patchData, postData } from "@/utils/api";
 
 const url = "/api/clients";
 const getClients = async (): Promise<Client[]> => {
-  return await fetchData<Client[]>(url);
+  return [];
 };
 
 const postClient = async (createClient: any): Promise<Client> => {

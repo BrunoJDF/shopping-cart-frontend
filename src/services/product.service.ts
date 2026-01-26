@@ -4,7 +4,7 @@ import { fetchData, patchData, postData } from "@/utils/api";
 const url = "/api/products";
 
 const getProducts = async () => {
-  return await fetchData<Product[]>(url);
+  return [];
 };
 
 const postProduct = async (createProduct: Product): Promise<Product> => {
